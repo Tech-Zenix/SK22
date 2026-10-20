@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIOLOGY Portal · SK22 - CHT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F4F0EA;--ink:#0D0D0D;--gold:#B8893B;--teal:#1F4D4F;--wine:#6B2D2D;--line:rgba(13,13,13,.14);--r:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif}
+em{font-style:italic;color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.serif,h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif}
+button,input,textarea{font:inherit;color:inherit}
+
+/* Nút */
+.btn{padding:8px 16px;border:1px solid var(--ink);border-radius:99px;background:none;cursor:pointer;font-size:14px;white-space:nowrap;text-decoration:none;display:inline-block;transition:background .2s,color .2s}
+.btn:hover{background:var(--ink);color:var(--cream)}
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:600}
+.btn.gold:hover{background:var(--cream);border-color:var(--gold)}
+.btn.danger{border-color:var(--wine);color:var(--wine)}
+.btn.danger:hover{background:var(--wine);color:var(--cream)}
+
+/* Màn khóa */
+#lock{position:fixed;inset:0;z-index:500;background:var(--ink);color:var(--cream);display:grid;place-items:center;padding:6vw;text-align:center;clip-path:inset(0)}
+#lock.open{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s cubic-bezier(.77,0,.18,1) .35s;pointer-events:none}
+#lock form{width:min(380px,100%);transition:opacity .4s,transform .6s}
+#lock.open form{opacity:0;transform:scale(.9)}
+#lock .om{font:italic 700 clamp(6rem,22vw,10rem)/1 'Cormorant Garamond',serif;color:var(--gold);display:block;transition:transform .8s}
+#lock.open .om{transform:rotate(180deg) scale(1.4)}
+#lock h1{font-size:2.4rem;line-height:1.1;margin:4px 0 6px}
+#lock p{font-size:13px;opacity:.7}
+#lock input{width:100%;margin:22px 0 12px;padding:12px 20px;border:1px solid var(--gold);border-radius:99px;background:transparent;color:var(--cream);text-align:center;letter-spacing:.2em}
+#lock .btn{width:100%;padding:12px}
+#le{min-height:1.6em;margin-top:12px;color:#e9a3a3;opacity:1!important}
+#lock form.bad{animation:sh .4s}
+@keyframes sh{25%{translate:-10px}75%{translate:10px}}
+
+/* Khung */
+#app{min-height:100vh;display:grid;grid-template-columns:230px 1fr;grid-template-rows:auto 1fr}
+#top{grid-column:1/-1;position:sticky;top:0;z-index:40;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 22px;background:var(--ink);color:var(--cream)}
+#top h1{font-size:1.5rem;line-height:1;margin-right:auto}
+#dirty{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+#top .btn{border-color:var(--cream);color:var(--cream)}
+#top .btn:hover{background:var(--cream);color:var(--ink)}
+#top .btn.gold{border-color:var(--gold);color:var(--ink)}
+#nav{position:sticky;top:61px;align-self:start;display:flex;flex-direction:column;gap:4px;padding:22px 14px}
+#nav button{display:flex;gap:10px;align-items:baseline;width:100%;padding:8px 12px;border:0;border-radius:var(--r);background:none;cursor:pointer;text-align:left;opacity:.55;transition:.2s}
+#nav button:hover{opacity:1}
+#nav button[aria-current=page]{opacity:1;background:rgba(184,137,59,.18);font-weight:600}
+#nav b{width:24px;font:700 1.1rem 'Cormorant Garamond',serif;color:var(--gold)}
+#nav i{margin-left:auto;font-style:normal;font-size:12px;opacity:.7}
+main{padding:28px 3vw 80px;max-width:980px;width:100%}
+.ph{display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px;margin-bottom:18px}
+.ph h2{font-size:clamp(2.2rem,5vw,3.6rem);line-height:1;margin-right:auto}
+.tools{margin-bottom:14px}
+input[type=search],input[type=text],input[type=url],textarea{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,.6)}
+textarea{resize:vertical}
+
+/* Danh sách */
+ul{list-style:none;display:grid;gap:8px}
+.row{display:flex;align-items:center;gap:12px;padding:10px 14px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:var(--r)}
+.row .n{font:italic 700 1.2rem 'Cormorant Garamond',serif;color:var(--gold);width:26px}
+.row img{width:44px;height:44px;border-radius:8px;object-fit:cover;background:var(--teal);flex:none}
+.row div{flex:1;min-width:0}
+.row b,.row small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row small{opacity:.65}
+.row .btn{padding:6px 12px;font-size:13px}
+.empty{padding:30px;text-align:center;opacity:.6}
+
+/* Thẻ thông tin / sao lưu */
+.box{padding:22px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:var(--r);display:grid;gap:6px}
+.box label,#ff label{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:10px}
+.box p{opacity:.75;font-size:14px}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+
+/* Hộp thoại */
+dialog{margin:auto;width:min(520px,calc(100% - 24px));max-height:92vh;overflow-y:auto;padding:26px;border:0;border-radius:var(--r);background:var(--cream);color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+dialog::backdrop{background:rgba(13,13,13,.6)}
+dialog h2{font-size:2.2rem;line-height:1;margin-bottom:6px}
+#ff{display:grid;gap:4px}
+#ff label.ck{display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-size:15px;color:var(--ink)}
+#ff .ck input{width:auto}
+dialog .acts{justify-content:flex-end;margin-top:18px}
+
+/* Toast */
+#toast{position:fixed;right:22px;bottom:22px;z-index:600;max-width:min(360px,calc(100% - 44px));padding:14px 18px;border-left:3px solid var(--gold);border-radius:8px;background:var(--ink);color:var(--cream);font-size:14px;opacity:0;transform:translateY(16px);transition:.35s;pointer-events:none}
+#toast.show{opacity:1;transform:none}
+#toast.err{border-color:#e9a3a3}
+
+@media(max-width:800px){
+ #app{grid-template-columns:1fr}
+ #nav{position:static;flex-direction:row;overflow-x:auto;padding:12px}
+ #nav button{width:auto;white-space:nowrap}
+ #nav i{display:none}
+ .row .n{display:none}
+ .row{flex-wrap:wrap}
+ .row div{flex-basis:calc(100% - 70px)}
+}
+@media(prefers-reduced-motion:reduce){*,*::before{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div id="lock">
+  <form id="lf" autocomplete="off">
+    <span class="om" aria-hidden="true">Ω</span>
+    <h1>GVCN <em>Portal</em></h1>
+    <p>SK22 - CHT · Khu vực dành riêng cho SK@@</p>
+    <input id="pw" type="password" aria-label="Mật khẩu" placeholder="Nhập mật khẩu" required>
+    <button class="btn gold">Mở khóa</button>
+    <p id="le" role="alert"></p>
+  </form>
+</div>
+
+<div id="app" inert>
+  <header id="top">
+    <h1>SK22 - CHT / <em>Portal</em></h1>
+    <span id="dirty" role="status"></span>
+    <a class="btn" href="index.html" target="_blank" rel="noopener">Xem trang chính ↗</a>
+    <button class="btn gold" id="save">Lưu Thay Đổi</button>
+  </header>
+  <nav id="nav" aria-label="Quản lý"></nav>
+  <main id="main">
+    <section id="p-info" hidden>
+      <header class="ph"><h2>Thông Tin <em>Lớp</em></h2></header>
+      <div class="box">
+        <label for="i-name">Tên lớp</label><input type="text" id="i-name" data-k="name">
+        <label for="i-teacher">Giáo viên chủ nhiệm</label><input type="text" id="i-teacher" data-k="teacher">
+        <label for="i-slogan">Slogan</label><input type="text" id="i-slogan" data-k="slogan">
+      </div>
+    </section>
+    <section id="p-data" hidden>
+      <header class="ph"><h2>Sao Lưu <em>&amp; Khôi Phục</em></h2></header>
+      <div class="box">
+        <p>Xuất toàn bộ dữ liệu ra file JSON để lưu giữ, hoặc nhập lại file đã sao lưu. Dữ liệu nhập/khôi phục chỉ áp dụng cho trang chính sau khi bấm <b>Lưu Thay Đổi</b>.</p>
+        <div class="acts">
+          <button class="btn" id="ex">Xuất file JSON</button>
+          <label class="btn" for="im" tabindex="0" id="iml">Nhập file JSON</label>
+          <input id="im" type="file" accept="application/json,.json" hidden>
+          <button class="btn danger" id="rs">Khôi phục mặc định</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="dlg" aria-labelledby="fh">
+  <form id="df">
+    <h2 id="fh"></h2>
+    <div id="ff"></div>
+    <div class="acts">
+      <button type="button" class="btn" id="cancel">Hủy</button>
+      <button class="btn gold">Xác nhận</button>
+    </div>
+  </form>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const KEY='SK22_CHT_DATA',PASS='SK22MAIDINH'; // shortcut: mật khẩu nằm trong mã nguồn, chỉ là rào chắn nhẹ; cần bảo mật thật thì dùng server
+const IMG=['photo-1578301978693-85fa9c0320b9','photo-1577083552431-6e5fd01aa342','photo-1541961017774-22349e4a1262','photo-1544967082-d9d25d867d66','photo-1513364776144-60967b0f800f','photo-1579783902614-a3fb3927b6a5'].map(i=>`https://images.unsplash.com/${i}?w=600&q=70&auto=format&fit=crop`);
+const N=["Bùi Lê Hà An","Bùi Trần Kiều Anh","Hoàng Tuấn Anh","Phan Quốc Dũng","Nguyễn Thị Hoài Duyên","Nguyễn Hoàng Kiều Dương","Nguyễn Phạm Ánh Dương","Phan Thùy Dương","Trịnh Ánh Dương","Phạm Nguyệt Hà","Đậu Hoàng Gia Hân","Lê Thị Thanh Huyền","Phạm Tấn Hưng","Nguyễn Việt Khoa","Biện Thị Thùy Linh","Lê Hoàng Linh","Lê Thị Hà Linh","Lê Thị Thùy Linh","Nguyễn Ngọc Huyền My","Đoàn Trần Ny Na","Hoàng Ngọc Nam","Phan Thị Nga","Bùi Quỳnh Ngân","Ngô Thị Bảo Ngọc","Trần Thanh Nhàn","Hoàng Thiện Nhân","Trần Thảo Như","Nguyễn Lan Phương","Trương Hữu Nhật Quang","Nguyễn Tiến Quân","Nguyễn Thế Sơn","Nguyễn Thị Huyền Tâm","Lê Đình Quốc Thái","Hoàng Thông","Nguyễn Hoàng Đức Tuấn"];
+const A=["Giải Nhì HSG cấp trường môn Sinh","Giải KK HSG cấp tỉnh","Học sinh Xuất sắc kỳ I","Thủ khoa bài kiểm tra Di truyền","Giải Ba Hùng biện Khoa học","Đội trưởng đội Cắm trại","Giải Nhất Thiết kế Poster Sinh học","Học sinh 3 tốt cấp trường","Giải KK Olympic Sinh học 10"];
+const P=["Điềm tĩnh, tỉ mỉ như người soi kính hiển vi","Năng nổ, luôn là người xung phong","Hài hước, cứ nói là cả lớp cười","Trầm lặng nhưng đầu óc đầy ý tưởng","Sáng tạo, mê vẽ sơ đồ quá trình","Cẩn thận, ghi chép đẹp nhất lớp","Hiền lành, ai cần cũng giúp","Quyết đoán, tư duy logic sắc bén"];
+const V=["Giấu một tập truyện tranh dưới ngăn bàn","Mê nghe nhạc không lời lúc học bài","Từng ngủ quên đến tận tiết cuối","Bí mật nuôi một chậu xương rồng tên Mendel","Chuyên gia ăn vặt giờ ra chơi","Viết nhật ký bằng… thuật ngữ sinh học","Mê chụp ảnh hoàng hôn sau trường","Có biệt tài bắt chước giọng thầy cô"];
+const H=["“Để mình kiểm tra lại đã!”","“Cái này có trong đề không nhỉ?”","“Tế bào nào cũng có ước mơ.”","“5 phút nữa thôi!”","“Sinh học là nghệ thuật.”","“Tin mình đi, chuẩn rồi.”","“Hôm nay ai trực nhật vậy?”","“Cố lên, sắp nghỉ rồi!”"];
+// Phải giống hệt DEF trong index.html để hai trang cùng cấu trúc
+const DEF=()=>({
+ info:{name:"SK22 - CHT",teacher:"Nguyễn Thị Mai Hồng",slogan:"Mỗi tế bào một ước mơ — cùng nhau nở rộ."},
+ stats:[{id:"s1",value:"35",title:"Thành viên",desc:"Một tập thể, một nhịp đập",big:true},{id:"s2",value:"12",title:"Giải HSG",desc:"Cấp trường & cấp tỉnh"},{id:"s3",value:"9.2",title:"GPA trung bình",desc:"Cả lớp, học kỳ I"},{id:"s4",value:"1",title:"Giải Nhất cắm trại",desc:"Khối 10 toàn trường"},{id:"s5",value:"100%",title:"Gắn kết",desc:"Không ai bị bỏ lại",big:true}],
+ timeline:[
+  {id:"t1",date:"05/09/2022",title:"Ngày tựu trường",description:"Buổi đầu tiên 35 gương mặt xa lạ ngồi chung một lớp.",image:IMG[0],highlight:true},
+  {id:"t2",date:"20/10/2022",title:"Ngày Phụ nữ Việt Nam",description:"Tự tay làm thiệp tri ân cô Hồng và các cô giáo.",image:IMG[1]},
+  {id:"t3",date:"20/11/2022",title:"Ngày Nhà giáo Việt Nam",description:"Văn nghệ, hoa và lời tri ân gửi thầy cô.",image:IMG[2],highlight:true},
+  {id:"t4",date:"26/03/2023",title:"Cắm trại Phục Hưng",description:"Gian trại ‘Cây sự sống’ đạt giải Nhất.",image:IMG[3]},
+  {id:"t5",date:"15/04/2023",title:"Kỳ thi Học sinh giỏi",description:"Những đêm ôn thi bên cốc cà phê và sơ đồ ADN.",image:IMG[4]},
+  {id:"t6",date:"31/05/2023",title:"Tổng kết năm học",description:"Chụp ảnh kỷ yếu, hẹn gặp lại mùa hè.",image:IMG[5],highlight:true}],
+ students:N.map((n,i)=>({id:"hs"+(i+1),name:n,dob:`${(i*7)%28+1}/${i%12+1}/2007`,achievements:A[i%A.length],personality:P[i%P.length],privateLife:V[(i*3)%V.length],highlights:H[(i*5)%H.length],avatar:IMG[i%IMG.length]}))
+});
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ok=d=>d&&d.info&&['stats','timeline','students'].every(k=>Array.isArray(d[k]));
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY));if(ok(d))return d}catch(e){}return DEF()}
+let D,dirty=false;
+
+// Mỗi bộ sưu tập: nhãn, cách hiện dòng, các trường của form [khóa, nhãn, kiểu, gợi ý]
+const S={
+ students:{h:'Hồ Sơ <em>Học Sinh</em>',label:'học sinh',pre:'hs',title:x=>x.name,sub:x=>x.achievements,img:x=>x.avatar,
+  f:[['name','Họ và tên','text'],['dob','Ngày sinh','text','vd: 5/9/2007'],['achievements','Thành tích','area'],['personality','Tính cách','area'],['privateLife','Đời tư','area'],['highlights','Nét nổi bật / câu cửa miệng','area'],['avatar','Link ảnh avatar','url']]},
+ stats:{h:'Thành Tích <em>Chung</em>',label:'thành tích',pre:'s',title:x=>`${x.value} · ${x.title}`,sub:x=>x.desc,
+  f:[['value','Con số (vd: 35, 9.2, 100%)','text'],['title','Tiêu đề','text'],['desc','Mô tả','text'],['big','Thẻ lớn (chiếm 2 cột)','check']]},
+ timeline:{h:'Ngày <em>Kỷ Niệm</em>',label:'cột mốc',pre:'t',title:x=>`${x.date} · ${x.title}`,sub:x=>x.description,img:x=>x.image,
+  f:[['date','Ngày (dd/mm/yyyy)','text'],['title','Tiêu đề','text'],['description','Mô tả','area'],['image','Link ảnh','url'],['highlight','Đánh dấu nổi bật','check']]}
+};
+const TABS=[['students','Học sinh','I'],['stats','Thành tích','II'],['timeline','Kỷ niệm','III'],['info','Thông tin lớp','IV'],['data','Sao lưu','V']];
+
+// ---------- Giao diện ----------
+function build(){
+ $('#main').insertAdjacentHTML('afterbegin',Object.keys(S).map(k=>`<section id="p-${k}" hidden><header class="ph"><h2>${S[k].h}</h2><button class="btn gold" data-a="add" data-k="${k}">+ Thêm ${S[k].label}</button></header>${k==='students'?'<div class="tools"><input id="sq" type="search" placeholder="Tìm học sinh theo tên…" aria-label="Tìm học sinh"></div>':''}<ul id="l-${k}"></ul></section>`).join(''));
+ $('#nav').innerHTML=TABS.map(([k,n,r])=>`<button data-t="${k}"><b>${r}</b>${n}<i id="c-${k}"></i></button>`).join('');
+}
+function tab(k){
+ TABS.forEach(([t])=>{$('#p-'+t).hidden=t!==k;$(`[data-t=${t}]`).toggleAttribute('aria-current',t===k);if(t===k)$(`[data-t=${t}]`).setAttribute('aria-current','page')});
+ location.hash=k;
+}
+function list(k){
+ const c=S[k],q=k==='students'?$('#sq').value.trim().toLowerCase():'';
+ $('#l-'+k).innerHTML=D[k].map((x,i)=>[x,i]).filter(([x])=>!q||c.title(x).toLowerCase().includes(q)).map(([x,i])=>
+  `<li class="row"><span class="n">${String(i+1).padStart(2,'0')}</span>${c.img?`<img loading="lazy" src="${esc(c.img(x))}" alt="" onerror="this.style.visibility='hidden'">`:''}<div><b>${esc(c.title(x))}</b><small>${esc(c.sub(x))}</small></div><button class="btn" data-a="edit" data-k="${k}" data-i="${i}" aria-label="Sửa ${esc(c.title(x))}">Sửa</button><button class="btn danger" data-a="del" data-k="${k}" data-i="${i}" aria-label="Xóa ${esc(c.title(x))}">Xóa</button></li>`).join('')
+  ||'<li class="empty">Chưa có mục nào.</li>';
+ $('#c-'+k).textContent=D[k].length;
+}
+function renderAll(){
+ Object.keys(S).forEach(list);
+ document.querySelectorAll('[data-k][id^=i-]').forEach(i=>i.value=D.info[i.dataset.k]??'');
+}
+function badge(){$('#dirty').textContent=dirty?'● Chưa lưu':'✓ Đã đồng bộ'}
+const touch=()=>{dirty=true;badge()};
+let tt;
+function toast(m,err){const t=$('#toast');t.textContent=m;t.className='show'+(err?' err':'');clearTimeout(tt);tt=setTimeout(()=>t.className='',3200)}
+
+// ---------- Thêm / sửa / xóa ----------
+let cur;
+function edit(k,i){
+ const c=S[k],x=i<0?{}:D[k][i];cur={k,i};
+ $('#fh').textContent=(i<0?'Thêm ':'Sửa ')+c.label;
+ $('#ff').innerHTML=c.f.map(([key,lb,t,ph],j)=>{const id='f_'+key,v=x[key]??'';
+  if(t==='check')return `<label class="ck"><input type="checkbox" id="${id}"${x[key]?' checked':''}>${lb}</label>`;
+  return `<label for="${id}">${lb}</label>`+(t==='area'?`<textarea id="${id}" rows="3">${esc(v)}</textarea>`:`<input id="${id}" type="${t==='url'?'url':'text'}" value="${esc(v)}" placeholder="${esc(ph||'')}"${j?'':' required'}>`)}).join('');
+ $('#dlg').showModal();
+}
+$('#df').onsubmit=e=>{
+ e.preventDefault();
+ const {k,i}=cur,c=S[k],o=i<0?{id:c.pre+Date.now()}:{...D[k][i]};
+ c.f.forEach(([key,,t])=>{const el=$('#f_'+key);o[key]=t==='check'?el.checked:el.value.trim()});
+ if(i<0)D[k].push(o);else D[k][i]=o;
+ $('#dlg').close();touch();list(k);
+};
+$('#cancel').onclick=()=>$('#dlg').close();
+$('#main').onclick=e=>{
+ const b=e.target.closest('[data-a]');if(!b)return;
+ const {a,k}=b.dataset,i=+b.dataset.i;
+ if(a==='add')edit(k,-1);
+ else if(a==='edit')edit(k,i);
+ else if(a==='del'&&confirm(`Xóa "${S[k].title(D[k][i])}"?`)){D[k].splice(i,1);touch();list(k)}
+};
+document.addEventListener('input',e=>{if(e.target.id==='sq')list('students');else if(e.target.id?.startsWith('i-')){D.info[e.target.dataset.k]=e.target.value;touch()}});
+$('#nav').onclick=e=>{const b=e.target.closest('[data-t]');if(b)tab(b.dataset.t)};
+
+// ---------- Lưu, sao lưu, khôi phục ----------
+function save(){
+ try{localStorage.setItem(KEY,JSON.stringify(D));dirty=false;badge();toast('Đã lưu · trang chính cập nhật ngay')}
+ catch(e){toast('Không lưu được: '+e.message,1)}
+}
+$('#save').onclick=save;
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='s'&&!$('#app').inert){e.preventDefault();save()}});
+addEventListener('beforeunload',e=>{if(dirty)e.preventDefault()});
+$('#ex').onclick=()=>{
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));
+ a.download=`SK22_CHT_backup_${new Date().toISOString().slice(0,10)}.json`;a.click();
+ setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+};
+$('#im').onchange=async e=>{
+ const f=e.target.files[0];e.target.value='';if(!f)return;
+ try{const d=JSON.parse(await f.text());if(!ok(d))throw 0;D=d;touch();renderAll();toast('Đã nhập · bấm "Lưu Thay Đổi" để áp dụng')}
+ catch(_){toast('File JSON không đúng cấu trúc SK22',1)}
+};
+$('#iml').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('#im').click()}};
+$('#rs').onclick=()=>{if(confirm('Khôi phục toàn bộ dữ liệu mặc định? Thay đổi hiện tại sẽ mất.')){D=DEF();touch();renderAll();toast('Đã khôi phục · bấm "Lưu Thay Đổi" để áp dụng')}};
+
+// ---------- Khóa ----------
+function start(){
+ D=load();build();renderAll();badge();
+ tab(TABS.some(([k])=>'#'+k===location.hash)?location.hash.slice(1):'students');
+ $('#app').inert=false;
+}
+function unlock(fast){
+ const l=$('#lock');start();
+ if(fast){l.remove();return}
+ l.classList.add('open');
+ setTimeout(()=>l.remove(),1700);
+}
+try{if(sessionStorage.getItem('SK22_AUTH')==='1')unlock(true)}catch(e){}
+$('#lf').onsubmit=e=>{
+ e.preventDefault();
+ if($('#pw').value===PASS){try{sessionStorage.setItem('SK22_AUTH','1')}catch(_){}unlock()}
+ else{
+  $('#le').textContent='Mật khẩu không đúng.';$('#pw').select();
+  const f=$('#lf');f.classList.remove('bad');void f.offsetWidth;f.classList.add('bad');
+ }
+};
+if($('#lock'))$('#pw').focus();
+</script>
+</body>
+</html>
