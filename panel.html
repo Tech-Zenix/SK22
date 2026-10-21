@@ -19,7 +19,7 @@ body{background:var(--bg);color:var(--iv);font:15px/1.6 var(--sans);-webkit-font
 .mut,small{color:var(--mut)}
 .empty{color:var(--mut);font-style:italic}
 
-/* Tableau: painterly sky, clouds, cypress and drape echoing the Renaissance reference */
+/* Tableau */
 .tableau{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#2c5d8a 0%,#6fa0c6 40%,#cfe0e8 68%,#40583f 100%)}
 .tableau::before,.tableau::after{content:"";position:absolute;inset:-10%}
 .tableau::before{background:radial-gradient(ellipse 28% 14% at 22% 30%,#fff 0,transparent 70%),radial-gradient(ellipse 34% 16% at 70% 24%,#f4ede2 0,transparent 70%),radial-gradient(ellipse 22% 12% at 84% 58%,#fff 0,transparent 70%);filter:blur(14px);animation:drift 40s ease-in-out infinite alternate}
@@ -32,8 +32,9 @@ body{background:var(--bg);color:var(--iv);font:15px/1.6 var(--sans);-webkit-font
 .btn:hover:not(:disabled){border-color:var(--gold);transform:translateY(-1px)}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 .btn.gold{background:var(--gold);border-color:var(--gold);color:#16130a}
+.btn.em{background:rgba(52,211,153,.16);border-color:rgba(52,211,153,.55);color:var(--em)}
 .btn.ghost{background:transparent}
-.btn.sm{padding:.35rem .7rem;font-size:.78rem}
+.btn.sm{padding:.38rem .75rem;font-size:.78rem}
 .btn.wide{width:100%}
 .btn.danger:hover:not(:disabled){border-color:var(--err);color:var(--err)}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
@@ -47,7 +48,7 @@ input::placeholder,textarea::placeholder{color:rgba(244,239,230,.4)}
 .seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)}
 .seg button{border:0;background:transparent;color:var(--mut);padding:.4rem .8rem;border-radius:8px;font:600 .8rem var(--sans);cursor:pointer;transition:background .25s,color .25s}
 .seg button[aria-selected=true],.seg button[aria-checked=true],.seg button[aria-pressed=true]{background:var(--gold);color:#16130a}
-.note{padding:.75rem 1rem;margin-bottom:16px;border:1px solid rgba(212,175,55,.4);border-radius:10px;background:rgba(212,175,55,.08)}
+.note{padding:.75rem 1rem;margin-bottom:16px;border:1px solid rgba(212,175,55,.4);border-radius:10px;background:rgba(212,175,55,.08);font-size:.85rem}
 .fs{border:0;padding:0;min-width:0}
 .badge{display:inline-block;font-size:.72rem;color:var(--gold);border:1px solid rgba(212,175,55,.5);border-radius:99px;padding:0 .55rem}
 
@@ -64,12 +65,12 @@ input::placeholder,textarea::placeholder{color:rgba(244,239,230,.4)}
 .back{display:block;width:100%;margin-top:16px;text-align:center;color:var(--mut);font-size:.85rem;background:none;border:0;cursor:pointer;text-decoration:underline}
 
 /* App shell */
-#app{display:grid;grid-template-columns:240px minmax(0,1fr);min-height:100vh}
+#app{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:100vh}
 .side{position:sticky;top:0;height:100vh;padding:24px 16px;border-right:1px solid var(--line);background:var(--glass);display:flex;flex-direction:column;gap:18px;overflow:auto}
 .brand{font:600 1.5rem/1.1 var(--serif)}
 .brand small{display:block;font:400 .75rem var(--sans)}
 #nav{display:grid;gap:4px}
-.navb{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;text-align:left;width:100%;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--iv);padding:.6rem .7rem;font:500 .88rem var(--sans);cursor:pointer;transition:background .25s,transform .35s var(--spring)}
+.navb{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;text-align:left;width:100%;border:1px solid transparent;border-radius:10px;background:transparent;color:var(--iv);padding:.6rem .7rem;font:500 .86rem var(--sans);cursor:pointer;transition:background .25s,transform .35s var(--spring)}
 .navb:hover{background:rgba(255,255,255,.05);transform:translateX(3px)}
 .navb[aria-current=page]{border-color:rgba(212,175,55,.5);background:rgba(212,175,55,.1)}
 .navb .mono{color:var(--gold);font-size:.75rem}
@@ -79,7 +80,7 @@ input::placeholder,textarea::placeholder{color:rgba(244,239,230,.4)}
 .head{position:relative;padding:28px clamp(16px,3vw,40px) 24px;overflow:hidden;border-bottom:1px solid var(--line)}
 .head .tableau{opacity:.55}
 .headrow{position:relative;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
-h1{font:600 clamp(2.4rem,5.5vw,4.6rem)/.95 var(--serif);letter-spacing:-.01em}
+h1{font:600 clamp(2.2rem,5vw,4.2rem)/.95 var(--serif);letter-spacing:-.01em}
 h1 .tn{font-size:.9rem;letter-spacing:0;color:var(--gold);vertical-align:top;margin-right:.4rem}
 .headact{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .sync{display:inline-flex;gap:8px;align-items:center;font:500 .78rem var(--mono);padding:.4rem .75rem;border:1px solid var(--line);border-radius:99px;background:var(--glass)}
@@ -108,15 +109,22 @@ h1 .tn{font-size:.9rem;letter-spacing:0;color:var(--gold);vertical-align:top;mar
 .sitem .mono{color:var(--gold);font-size:.75rem}
 .sitem small{font-size:.68rem;white-space:nowrap}
 .sitem small.ok{color:var(--em)}
-.imgrow{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:start}
-.thumb{width:88px;height:88px;border-radius:12px;border:1px dashed var(--line);background:rgba(255,255,255,.04) center/cover no-repeat}
+.imgrow{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;padding:12px;border:1px dashed var(--line);border-radius:12px;background:rgba(255,255,255,.02)}
+.thumb{width:96px;height:96px;border-radius:12px;border:1px solid var(--gold);background:rgba(255,255,255,.04) center/cover no-repeat;display:grid;place-items:center;font:600 .7rem var(--mono);color:var(--mut);text-align:center}
 .imgctl{display:grid;gap:8px}
 .lh{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .lh h2{margin:0}
 .items{list-style:none;padding:0;display:grid;gap:10px}
 .item{display:grid;gap:8px;padding:12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03)}
 
-/* Cards (also used for live preview) */
+/* SK22/image/ Gallery Grid */
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
+.gal-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03);display:flex;flex-direction:column}
+.gal-card .gimg{aspect-ratio:1/1;background:#0d1310 center/cover no-repeat;border-bottom:1px solid var(--line)}
+.gal-card .gmeta{padding:10px;display:grid;gap:6px;font-size:.76rem}
+.gal-card .gname{font-family:var(--mono);color:var(--gold);word-break:break-all;font-size:.72rem}
+
+/* Cards (live preview) */
 .pv{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:var(--r);background:#101512}
 .hero{min-height:300px;display:grid;align-items:end}
 .hero .tableau,.pvbg{position:absolute;inset:0}
@@ -147,8 +155,8 @@ h1 .tn{font-size:.9rem;letter-spacing:0;color:var(--gold);vertical-align:top;mar
 #toast{position:fixed;left:50%;bottom:84px;z-index:50;transform:translate(-50%,24px);opacity:0;pointer-events:none;padding:.7rem 1.2rem;border:1px solid var(--gold);border-radius:99px;background:var(--glass);backdrop-filter:blur(14px);font-weight:600;font-size:.88rem;transition:opacity .3s,transform .5s var(--spring)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
 #toast.err{border-color:var(--err);color:var(--err)}
-dialog{background:#101512;color:var(--iv);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(92vw,420px);margin:auto}
-dialog::backdrop{background:rgba(0,0,0,.6);backdrop-filter:blur(4px)}
+dialog{background:#101512;color:var(--iv);border:1px solid var(--line);border-radius:16px;padding:24px;width:min(94vw,680px);margin:auto;max-height:86vh;overflow:auto}
+dialog::backdrop{background:rgba(0,0,0,.65);backdrop-filter:blur(4px)}
 dialog h3{font:600 1.6rem/1.1 var(--serif);margin-bottom:8px}
 
 @media(max-width:1180px){.work{grid-template-columns:1fr}.prev{position:static}}
@@ -159,6 +167,7 @@ dialog h3{font:600 1.6rem/1.1 var(--serif);margin-bottom:8px}
  .who{margin-top:0;display:flex;flex-wrap:wrap;align-items:center}
  .split{grid-template-columns:1fr}
  .list ul{max-height:240px}
+ .imgrow{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -232,7 +241,7 @@ dialog h3{font:600 1.6rem/1.1 var(--serif);margin-bottom:8px}
 /* ---------- Constants & schema ---------- */
 const KEY='CSK22_HT_DATA_V1', SKEY='CSK22_HT_SESSION_V2';
 const DEFAULT_PASS='maihong';
-const API_DATA='/api/data', API_AUTH='/api/auth';
+const API_DATA='/api/data', API_AUTH='/api/auth', API_IMAGE='/api/image';
 const TEACHER='Nguyễn Thị Mai Hồng';
 const NAMES=['Bùi Lê Hà An','Bùi Trần Kiều Anh','Hoàng Tuấn Anh','Phan Quốc Dũng','Nguyễn Thị Hoài Duyên','Nguyễn Hoàng Kiều Dương','Nguyễn Phạm Ánh Dương','Phan Thùy Dương','Trịnh Ánh Dương','Phạm Nguyệt Hà','Đậu Hoàng Gia Hân','Lê Thị Thanh Huyền','Phạm Tấn Hưng','Nguyễn Việt Khoa','Biện Thị Thùy Linh','Lê Hoàng Linh','Lê Thị Hà Linh','Lê Thị Thùy Linh','Nguyễn Ngọc Huyền My','Đoàn Trần Ny Na','Hoàng Ngọc Nam','Phan Thị Nga','Bùi Quỳnh Ngân','Ngô Thị Bảo Ngọc','Trần Thanh Nhàn','Hoàng Thiện Nhân','Trần Thảo Như','Nguyễn Lan Phương','Trương Hữu Nhật Quang','Nguyễn Tiến Quân','Nguyễn Thế Sơn','Nguyễn Thị Huyền Tâm','Lê Đình Quốc Thái','Hoàng Thông','Nguyễn Hoàng Đức Tuấn'];
 const PF=['bio','experience','personality','achievements'];
@@ -252,21 +261,20 @@ const skeleton=()=>({version:1,updatedAt:null,
   quotes:[],
   teacher:{name:TEACHER,avatar:'',bio:'',experience:'',personality:'',achievements:''},
   students:NAMES.map((name,i)=>({id:pad(i+1),name,avatar:'',bio:'',experience:'',personality:'',achievements:''})),
-  moments:[],achievements:[],classAchievements:[]});
+  moments:[],achievements:[],classAchievements:[],imageLibrary:[]});
 
 function normalize(r){
   const s=skeleton();
   if(!r||typeof r!=='object')return s;
   const mix=(d,x)=>{if(x&&typeof x==='object'&&!Array.isArray(x))for(const k in d)if(typeof x[k]==='string')d[k]=x[k]};
   mix(s.school,r.school);mix(s.klass,r.klass);mix(s.teacher,r.teacher);s.teacher.name=TEACHER;
-  // Cross-mirror fields between index.html and panel.html conventions
   s.school.subtitle=s.school.subtitle||s.school.address||'';
   s.school.intro=s.school.intro||s.school.message||'';
   s.school.imageUrl=s.school.imageUrl||s.school.logo||'';
   s.school.address=s.school.subtitle;
   s.school.message=s.school.intro;
   s.school.logo=s.school.imageUrl;
-  s.klass.message=s.klass.message|| (typeof r.manifesto==='string'?r.manifesto:'');
+  s.klass.message=s.klass.message||(typeof r.manifesto==='string'?r.manifesto:'');
   s.manifesto=s.klass.message;
   s.className=s.klass.name||'Chuyên Sinh Khóa 22';
 
@@ -282,6 +290,7 @@ function normalize(r){
   s.moments=mapList(r.moments,false);
   s.achievements=mapList(rawAch,false);
   s.classAchievements=s.achievements;
+  s.imageLibrary=Array.isArray(r.imageLibrary)?r.imageLibrary:[];
   s.updatedAt=typeof r.updatedAt==='string'?r.updatedAt:null;
   return s;
 }
@@ -297,7 +306,7 @@ const syncMirror=()=>{
 
 const loadLocal=()=>{try{return normalize(JSON.parse(localStorage.getItem(KEY)))}catch{return skeleton()}};
 
-let D=loadLocal(), ses=null, isDirty=false, cloudState='Khởi tạo...';
+let D=loadLocal(), ses=null, isDirty=false, cloudState='Khởi tạo...', serverImages=[];
 const UI={tab:'intro',sel:0,q:''};
 let bc=null;try{bc=new BroadcastChannel('csk22_live_sync')}catch{}
 
@@ -306,15 +315,13 @@ const root=p=>p.startsWith('ui.')?[UI,p.slice(3)]:[D,p];
 const get=p=>{const[r,q]=root(p);return q.split('.').reduce((o,k)=>o?.[k],r)??''};
 const setp=(p,v)=>{const[r,q]=root(p);const ks=q.split('.'),l=ks.pop();ks.reduce((o,k)=>o[k],r)[l]=v;syncMirror()};
 
-/* ---------- Permissions: SK22 Member has full studio access ---------- */
+/* ---------- Permissions ---------- */
 const isT=()=>true;
-const canEditStudent=()=>true;
 const canMutate=()=>true;
-const canTab=()=>true;
 
 /* ---------- UI utilities ---------- */
 let tT;
-function toast(msg,type){const t=$('#toast');t.textContent=msg;t.className='show'+(type==='err'?' err':'');clearTimeout(tT);tT=setTimeout(()=>t.className='',2800)}
+function toast(msg,type){const t=$('#toast');t.textContent=msg;t.className='show'+(type==='err'?' err':'');clearTimeout(tT);tT=setTimeout(()=>t.className='',3200)}
 function ask(title,msg,ok='Xác nhận'){return new Promise(res=>{const d=$('#dlg');d.returnValue='';
   d.innerHTML=`<form method="dialog"><h3>${esc(title)}</h3><p class="mut">${esc(msg)}</p><div class="row end"><button class="btn ghost" value="no">Hủy</button><button class="btn gold" value="yes">${esc(ok)}</button></div></form>`;
   d.onclose=()=>res(d.returnValue==='yes');d.showModal()})}
@@ -323,22 +330,167 @@ function setSync(customText){const s=$('#sync');if(!s)return;s.classList.toggle(
   const t=D.updatedAt?new Date(D.updatedAt).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}):'';
   $('#syncT').textContent=isDirty?'Chưa lưu thay đổi':(t?`${cloudState} · ${t}`:cloudState)}
 const dirty=v=>{isDirty=v;setSync()};
-const paintThumbs=()=>document.querySelectorAll('[data-thumb]').forEach(e=>{const v=get(e.dataset.thumb);e.style.backgroundImage=v?`url(${JSON.stringify(v)})`:''});
+const paintThumbs=()=>document.querySelectorAll('[data-thumb]').forEach(e=>{
+  const v=get(e.dataset.thumb);
+  e.style.backgroundImage=v?`url(${JSON.stringify(v)})`:'';
+  e.textContent=v?'':'Chưa có ảnh';
+});
 
 function compress(file,max){return new Promise((res,rej)=>{const u=URL.createObjectURL(file),im=new Image();
   im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');
     c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);
-    let o=c.toDataURL('image/webp',.8);if(!o.startsWith('data:image/webp'))o=c.toDataURL('image/jpeg',.8);res(o)};
+    let o=c.toDataURL('image/webp',.84);if(!o.startsWith('data:image/webp'))o=c.toDataURL('image/jpeg',.84);res(o)};
   im.onerror=()=>{URL.revokeObjectURL(u);rej(new Error('img'))};im.src=u})}
+
+/* ---------- Upload Image to /SK22/image/ via Server API & Immediate Sync ---------- */
+async function uploadToSK22ImageFolder(file, prefixLabel, targetPath){
+  toast('Đang nén & tải ảnh lên /SK22/image/...');
+  setSync('Đang tải ảnh lên /SK22/image/...');
+  const maxDim = (targetPath && targetPath.endsWith('avatar')) ? 640 : 1400;
+  const dataUrl = await compress(file, maxDim);
+  const cleanPrefix = fold(prefixLabel || 'sk22').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'') || 'sk22';
+
+  let finalUrl = dataUrl;
+  try{
+    const res = await fetch(API_IMAGE, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-sk22-password': (ses && ses.password) || DEFAULT_PASS,
+        'Authorization': 'Bearer ' + ((ses && ses.password) || DEFAULT_PASS)
+      },
+      body: JSON.stringify({
+        dataUrl,
+        prefix: cleanPrefix,
+        label: prefixLabel || file.name
+      })
+    });
+    if(res.ok){
+      const j = await res.json();
+      if(j && j.url){
+        finalUrl = j.url;
+      }
+    }
+  }catch{}
+
+  const entry = {
+    filename: finalUrl.startsWith('/SK22/image/') ? finalUrl.replace('/SK22/image/','') : (`${cleanPrefix}-${Date.now().toString(36)}.webp`),
+    url: finalUrl,
+    label: prefixLabel || file.name,
+    createdAt: new Date().toISOString()
+  };
+  D.imageLibrary = [entry, ...(D.imageLibrary || []).filter(x => x.url !== finalUrl)];
+
+  if(targetPath){
+    setp(targetPath, finalUrl);
+    paintThumbs();
+    const urlInput = document.querySelector(`[data-url="${targetPath}"]`);
+    if(urlInput) urlInput.value = finalUrl.startsWith('data:') ? '/SK22/image/' + entry.filename : finalUrl;
+    touch(targetPath);
+    if(!targetPath.startsWith('ui.')){
+      await save();
+      toast('Đã tải lên ' + (finalUrl.startsWith('/SK22/image/') ? finalUrl : '/SK22/image/' + entry.filename) + ' & cập nhật ngay lên index.html!');
+    } else {
+      toast('Đã tải ảnh lên ' + (finalUrl.startsWith('/SK22/image/') ? finalUrl : '/SK22/image/' + entry.filename));
+    }
+  } else {
+    await save();
+  }
+  await fetchServerImageList();
+  return finalUrl;
+}
+
+async function fetchServerImageList(){
+  try{
+    const res = await fetch(API_IMAGE + '?list=1', {cache:'no-store'});
+    if(res.ok){
+      const j = await res.json();
+      if(j && Array.isArray(j.images)){
+        serverImages = j.images;
+        if(UI.tab === 'gallery') renderView(false);
+      }
+    }
+  }catch{}
+}
+
+function getAllGalleryImages(){
+  const map = new Map();
+  serverImages.forEach(im => map.set(im.url, im));
+  (D.imageLibrary || []).forEach(im => {
+    if(!map.has(im.url)) map.set(im.url, im);
+  });
+  return [...map.values()];
+}
+
+/* ---------- Modal Picker from /SK22/image/ ---------- */
+function openGalleryPicker(targetPath){
+  const list = getAllGalleryImages();
+  const d = $('#dlg');
+  d.returnValue = '';
+  const cards = list.map((im, idx) => `
+    <div class="gal-card">
+      <div class="gimg" style="background-image:url(${JSON.stringify(im.url)})"></div>
+      <div class="gmeta">
+        <div class="gname">/SK22/image/${esc(im.filename || '')}</div>
+        <small>${esc(im.label || '')}</small>
+        <button type="button" class="btn sm gold" data-pick-img="${idx}">Chọn ảnh này</button>
+      </div>
+    </div>
+  `).join('');
+
+  d.innerHTML = `
+    <form method="dialog">
+      <h3>Kho ảnh /SK22/image/ (${list.length} ảnh)</h3>
+      <p class="mut" style="margin-bottom:14px">Chọn một ảnh đã tải lên trong thư mục <code>/SK22/image/</code> để gán ngay vào mục này:</p>
+      ${list.length ? `<div class="gal-grid">${cards}</div>` : '<p class="empty">Kho /SK22/image/ chưa có ảnh nào. Hãy bấm nút "Tải ảnh từ Máy tính / Điện thoại" để tải lên.</p>'}
+      <div class="row end"><button class="btn ghost" value="close">Đóng</button></div>
+    </form>
+  `;
+  d.onclick = async e => {
+    const b = e.target.closest('[data-pick-img]');
+    if(!b) return;
+    const picked = list[+b.dataset.pickImg];
+    if(picked){
+      setp(targetPath, picked.url);
+      paintThumbs();
+      const u = document.querySelector(`[data-url="${targetPath}"]`);
+      if(u) u.value = picked.url.startsWith('data:') ? ('/SK22/image/' + picked.filename) : picked.url;
+      touch(targetPath);
+      d.close();
+      if(!targetPath.startsWith('ui.')){
+        await save();
+      }
+    }
+  };
+  d.showModal();
+}
 
 /* ---------- Form builders ---------- */
 const fld=(label,path,o={})=>`<label class="f"><span>${esc(label)}</span>${o.area
   ?`<textarea rows="${o.rows||5}" data-path="${path}" placeholder="${esc(o.ph||'')}">${esc(get(path))}</textarea>`
   :`<input data-path="${path}" value="${esc(get(path))}" placeholder="${esc(o.ph||'')}">`}</label>`;
-const imgBox=(path,label)=>{const v=String(get(path));return `<div class="f"><span>${esc(label)}</span><div class="imgrow"><div class="thumb" data-thumb="${path}" role="img" aria-label="Ảnh đã chọn"></div><div class="imgctl"><input type="url" data-url="${path}" aria-label="${esc(label)} (URL)" placeholder="Dán URL ảnh…" value="${v.startsWith('data:')?'':esc(v)}"><div class="row"><label class="btn sm">Chọn ảnh từ máy<input type="file" accept="image/*" hidden data-file="${path}"></label><button type="button" class="btn sm ghost" data-clear="${path}">Xóa ảnh</button></div></div></div></div>`};
+
+const imgBox=(path,label,prefixHint='')=>{
+  const v=String(get(path));
+  const displayUrl=v.startsWith('data:')?'/SK22/image/da-tai-len-tu-thiet-bi.webp':v;
+  return `<div class="f"><span>${esc(label)} · <code class="mono" style="color:var(--gold)">/SK22/image/</code></span>
+  <div class="imgrow">
+    <div class="thumb" data-thumb="${path}" role="img" aria-label="Ảnh đã chọn"></div>
+    <div class="imgctl">
+      <div class="row">
+        <label class="btn sm gold">📱💻 Tải ảnh từ Máy tính / Điện thoại<input type="file" accept="image/*" hidden data-file="${path}" data-prefix="${esc(prefixHint||label)}"></label>
+        <button type="button" class="btn sm em" data-pick-gal="${path}">📂 Chọn từ kho /SK22/image/</button>
+        <button type="button" class="btn sm ghost danger" data-clear="${path}">Xóa ảnh</button>
+      </div>
+      <input type="url" data-url="${path}" aria-label="${esc(label)} (URL)" placeholder="Hoặc dán đường dẫn /SK22/image/... hay URL ảnh ngoài" value="${esc(displayUrl)}">
+      <small>Khi chọn ảnh từ máy tính hoặc điện thoại, ảnh sẽ tự động lưu vào <code>/SK22/image/</code> và cập nhật ngay lên <code>index.html</code>.</small>
+    </div>
+  </div></div>`;
+};
+
 const initial=n=>(String(n).trim().split(/\s+/).pop()||'?')[0];
 const prof=p=>`<article class="pv pcard"><div class="av">${p.avatar?`<img src="${esc(p.avatar)}" alt="Ảnh ${esc(p.name)}">`:`<span>${esc(initial(p.name))}</span>`}</div><h3>${esc(p.name)}</h3>${PF.map(k=>`<section><h4>${LBL[k]}</h4>${p[k]?`<p>${esc(p[k])}</p>`:'<p class="empty">Chưa cập nhật</p>'}</section>`).join('')}</article>`;
-const done=s=>PF.some(k=>s[k]);
+const done=s=>PF.some(k=>s[k])||Boolean(s.avatar);
 
 /* ---------- Generic CRUD (quotes, moments, achievements) ---------- */
 const img=u=>u?`<img src="${esc(u)}" alt="" loading="lazy" decoding="async">`:'';
@@ -347,10 +499,10 @@ const CR={
     fields:[{k:'text',l:'Nội dung câu thoại',t:'area',req:1},{k:'author',l:'Người nói',t:'author',ph:'Chọn GVCN, học sinh hoặc nhập tự do'},{k:'context',l:'Bối cảnh / Thời gian',t:'text'}],
     card:q=>`<figure class="qcard"><blockquote>${esc(q.text)||'…'}</blockquote><figcaption>${esc(q.author)}${q.context?`<small>${esc(q.context)}</small>`:''}</figcaption></figure>`},
   moments:{key:'moments',noun:'khoảnh khắc',title:'Khoảnh khắc đã thêm',grade:1,
-    fields:[{k:'imageUrl',l:'Ảnh kỷ niệm',t:'img'},{k:'title',l:'Tiêu đề kỷ niệm',t:'text',req:1},{k:'date',l:'Thời gian',t:'text',ph:'Ví dụ: 20/11/2023'},{k:'caption',l:'Chú thích',t:'area'}],
+    fields:[{k:'imageUrl',l:'Ảnh kỷ niệm',t:'img',prefix:'moment'},{k:'title',l:'Tiêu đề kỷ niệm',t:'text',req:1},{k:'date',l:'Thời gian',t:'text',ph:'Ví dụ: 20/11/2023'},{k:'caption',l:'Chú thích',t:'area'}],
     card:m=>`<div class="mc">${img(m.imageUrl)}<div><span class="badge mono">Lớp ${esc(m.grade)}</span><h4>${esc(m.title)||'Chưa có tiêu đề'}</h4>${m.date?`<small>${esc(m.date)}</small>`:''}<p>${esc(m.caption)}</p></div></div>`},
   achievements:{key:'achievements',noun:'thành tích',title:'Thành tích đã thêm',grade:1,
-    fields:[{k:'title',l:'Tên thành tích / giải thưởng',t:'text',req:1},{k:'meta',l:'Cấp / Thời gian',t:'text',ph:'Ví dụ: Cấp tỉnh · 2024'},{k:'description',l:'Mô tả chi tiết',t:'area'},{k:'imageUrl',l:'Ảnh minh chứng (tùy chọn)',t:'img'}],
+    fields:[{k:'title',l:'Tên thành tích / giải thưởng',t:'text',req:1},{k:'meta',l:'Cấp / Thời gian',t:'text',ph:'Ví dụ: Cấp tỉnh · 2024'},{k:'description',l:'Mô tả chi tiết',t:'area'},{k:'imageUrl',l:'Ảnh minh chứng (tùy chọn)',t:'img',prefix:'achievement'}],
     card:a=>`<div class="mc">${img(a.imageUrl)}<div><span class="badge mono">Lớp ${esc(a.grade)}</span><h4>${esc(a.title)||'Chưa có tên thành tích'}</h4>${a.meta?`<small>${esc(a.meta)}</small>`:''}<p>${esc(a.description)}</p></div></div>`}
 };
 const blank=(c,flt)=>{const o={};c.fields.forEach(x=>o[x.k]='');if(c.grade)o.grade=GR.includes(flt)?flt:'10';return o};
@@ -359,39 +511,80 @@ Object.values(CR).forEach(c=>UI[c.key]={edit:null,filter:'all',form:blank(c)});
 function crud(c){
   const st=UI[c.key],f=st.form,pre=`ui.${c.key}.form.`,all=D[c.key],list=all.filter(x=>st.filter==='all'||x.grade===st.filter);
   const fh=c.fields.map(x=>{
-    if(x.t==='img')return imgBox(pre+x.k,x.l);
+    if(x.t==='img')return imgBox(pre+x.k,x.l,x.prefix||c.key);
     const l=x.l+(x.req?' *':'');
     return x.t==='area'?fld(l,pre+x.k,{area:1,rows:4,ph:x.ph}):`<label class="f"><span>${esc(l)}</span><input data-path="${pre+x.k}" value="${esc(f[x.k])}" placeholder="${esc(x.ph||'')}" ${x.t==='author'?'list="authors"':''}></label>`}).join('');
   const gsel=c.grade?`<div class="f"><span>Khối</span><div class="seg" role="radiogroup" aria-label="Chọn khối">${GR.map(g=>`<button type="button" role="radio" aria-checked="${f.grade===g}" data-act="grade" data-key="${c.key}" data-v="${g}">Lớp ${g}</button>`).join('')}</div></div>`:'';
   const chips=c.grade?`<div class="seg" role="group" aria-label="Lọc theo khối">${['all',...GR].map(g=>`<button type="button" aria-pressed="${st.filter===g}" data-act="filter" data-key="${c.key}" data-v="${g}">${g==='all'?'Tất cả':'Lớp '+g} <span class="mono">${g==='all'?all.length:all.filter(x=>x.grade===g).length}</span></button>`).join('')}</div>`:'';
   const rows=list.map(it=>{const i=all.indexOf(it),a=`data-key="${c.key}" data-id="${esc(it.id)}"`;
     return `<li class="item"><div>${c.card(it)}</div><div class="row">${canMutate(it)?`<button type="button" class="btn sm ghost" data-act="edit" ${a}>Sửa</button><button type="button" class="btn sm ghost danger" data-act="del" ${a}>Xóa</button>`:''}${c.order&&isT()?`<button type="button" class="btn sm ghost" aria-label="Đưa lên trên" data-act="up" ${a} ${i===0?'disabled':''}>↑</button><button type="button" class="btn sm ghost" aria-label="Đưa xuống dưới" data-act="down" ${a} ${i===all.length-1?'disabled':''}>↓</button>`:''}</div></li>`}).join('');
-  return `<div class="stack"><form class="panel" data-form="${c.key}" novalidate><h2>${st.edit?'Sửa':'Thêm'} ${c.noun}</h2>${gsel}${fh}<div class="row"><button class="btn gold" type="submit">${st.edit?'Cập nhật':'Thêm vào danh sách'}</button>${st.edit?`<button type="button" class="btn ghost" data-act="cancel" data-key="${c.key}">Hủy sửa</button>`:''}</div></form>
+  return `<div class="stack"><form class="panel" data-form="${c.key}" novalidate><h2>${st.edit?'Sửa':'Thêm'} ${c.noun}</h2>${gsel}${fh}<div class="row"><button class="btn gold" type="submit">${st.edit?'Cập nhật & Đồng bộ':'Thêm & Đồng bộ lên index.html'}</button>${st.edit?`<button type="button" class="btn ghost" data-act="cancel" data-key="${c.key}">Hủy sửa</button>`:''}</div></form>
   <div class="panel"><div class="lh"><h2>${c.title} <span class="mono">${list.length}</span></h2>${chips}</div>${rows?`<ul class="items">${rows}</ul>`:'<p class="empty">Chưa có mục nào. Thêm mục đầu tiên ở biểu mẫu phía trên.</p>'}</div></div>`;
 }
 
 /* ---------- Tab views ---------- */
 const vIntro=()=>`<div class="stack"><div class="panel"><h2>Trường THPT Chuyên Hà Tĩnh</h2>
-  ${fld('Tên trường','school.name')}${fld('Phụ đề mở đầu','school.subtitle')}${fld('Giới thiệu ngắn về trường','school.intro',{area:1})}${imgBox('school.imageUrl','Ảnh nền / biểu tượng trường')}</div>
-  <div class="panel"><h2>Chuyên Sinh Khóa 22</h2>${fld('Tên tập thể','klass.name')}${fld('Thông điệp chung (Class Manifesto)','klass.message',{area:1})}${imgBox('klass.imageUrl','Ảnh nền / biểu tượng lớp')}</div></div>`;
-const vTeacher=()=>`<div class="panel"><h2>${esc(TEACHER)}</h2>${imgBox('teacher.avatar','Ảnh chân dung')}${PF.map(k=>fld(LBL[k],'teacher.'+k,{area:1})).join('')}</div>`;
+  ${fld('Tên trường','school.name')}${fld('Phụ đề mở đầu','school.subtitle')}${fld('Giới thiệu ngắn về trường','school.intro',{area:1})}${imgBox('school.imageUrl','Ảnh nền / biểu tượng trường','school-cht')}</div>
+  <div class="panel"><h2>Chuyên Sinh Khóa 22</h2>${fld('Tên tập thể','klass.name')}${fld('Thông điệp chung (Class Manifesto)','klass.message',{area:1})}${imgBox('klass.imageUrl','Ảnh nền / biểu tượng lớp','class-csk22')}</div></div>`;
+
+const vTeacher=()=>`<div class="panel"><h2>GVCN: ${esc(TEACHER)}</h2>
+  <p class="note">Mọi ảnh tải lên từ máy tính/điện thoại tại đây sẽ tự động lưu vào <code>/SK22/image/</code> và hiển thị ngay ở Chương 04 trên <code>index.html</code>.</p>
+  ${imgBox('teacher.avatar','Ảnh chân dung Giáo viên Chủ nhiệm','gvcn-mai-hong')}
+  ${PF.map(k=>fld(LBL[k],'teacher.'+k,{area:1})).join('')}
+  <div class="row"><button class="btn gold" type="button" data-act="saveNow">Lưu &amp; Cập nhật Hồ sơ GVCN</button></div>
+</div>`;
+
 const studentItems=()=>{const q=fold(UI.q);
   return D.students.map((s,i)=>({s,i})).filter(({s})=>!q||fold(s.id+' '+s.name).includes(q)).map(({s,i})=>`<li><button type="button" class="sitem" data-act="pick" data-i="${i}" ${i===UI.sel?'aria-current="true"':''}><span><span class="mono">${s.id}</span> ${esc(s.name)}</span><small class="${done(s)?'ok':''}">${done(s)?'Đã cập nhật':'Chưa cập nhật'}</small></button></li>`).join('')||'<li class="empty">Không tìm thấy học sinh.</li>'};
+
 function vStudents(){
   const i=UI.sel,s=D.students[i],p=`students.${i}.`,next=i<D.students.length-1;
-  return `<div class="split"><div class="panel list"><input type="search" data-search aria-label="Tìm học sinh" placeholder="Tìm học sinh…" value="${esc(UI.q)}"><ul id="slist">${studentItems()}</ul></div>
+  return `<div class="split"><div class="panel list"><input type="search" data-search aria-label="Tìm học sinh" placeholder="Tìm học sinh (01-35)…" value="${esc(UI.q)}"><ul id="slist">${studentItems()}</ul></div>
   <form class="panel" data-form="student" novalidate><h2>${s.id}. ${esc(s.name)}</h2>
-  <fieldset class="fs">${imgBox(p+'avatar','Ảnh đại diện')}${PF.map(k=>fld(LBL[k],p+k,{area:1})).join('')}
+  <fieldset class="fs">${imgBox(p+'avatar','Ảnh đại diện học sinh','hs-'+s.id+'-'+s.name)}${PF.map(k=>fld(LBL[k],p+k,{area:1})).join('')}
   <div class="row"><button class="btn gold" type="submit">Lưu hồ sơ này</button>${next?'<button type="button" class="btn" data-act="saveNext">Lưu &amp; chuyển sang học sinh tiếp theo</button>':''}</div></fieldset></form></div>`;
 }
+
+function vGallery(){
+  const list = getAllGalleryImages();
+  const cards = list.map(im => `
+    <div class="gal-card">
+      <div class="gimg" style="background-image:url(${JSON.stringify(im.url)})"></div>
+      <div class="gmeta">
+        <div class="gname">${esc(im.url.startsWith('data:') ? '/SK22/image/' + (im.filename || 'local.webp') : im.url)}</div>
+        <small>${esc(im.label || '')}</small>
+        <div class="row">
+          <button type="button" class="btn sm" data-copy-url="${esc(im.url)}">Copy Link</button>
+          <button type="button" class="btn sm ghost danger" data-del-img="${esc(im.filename || '')}" data-del-url="${esc(im.url)}">Xóa</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  return `<div class="stack">
+    <div class="panel">
+      <h2>Kho lưu trữ ảnh trực tiếp <code>/SK22/image/</code></h2>
+      <p class="note">Bạn có thể tải lên cùng lúc nhiều ảnh từ máy tính hoặc điện thoại vào thư mục <code>/SK22/image/</code>. Server sẽ lưu trữ vào Neon Database và phân phối qua đường dẫn <code>/SK22/image/&lt;tên-file&gt;</code> để <code>index.html</code> hiển thị tức thì.</p>
+      <div class="row">
+        <label class="btn gold">📱💻 Tải ảnh mới lên /SK22/image/ (Chọn 1 hoặc nhiều ảnh)<input type="file" accept="image/*" multiple hidden id="multiUploadInput"></label>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="lh"><h2>Danh sách ảnh trong <code>/SK22/image/</code> <span class="mono">${list.length}</span></h2></div>
+      ${list.length ? `<div class="gal-grid">${cards}</div>` : '<p class="empty">Chưa có ảnh nào trong /SK22/image/. Hãy bấm nút tải ảnh phía trên hoặc tải trực tiếp trong hồ sơ GVCN / 35 Học sinh.</p>'}
+    </div>
+  </div>`;
+}
+
 const TABS=[
   {id:'intro',n:'01',label:'Mở đầu: Trường & Chuyên Sinh K22',view:vIntro},
   {id:'quotes',n:'02',label:'Câu thoại kinh điển',view:()=>crud(CR.quotes)},
   {id:'teacher',n:'03',label:'Hồ sơ giáo viên chủ nhiệm',view:vTeacher},
   {id:'students',n:'04',label:'Quản lý 35 học sinh',view:vStudents},
   {id:'moments',n:'05',label:'Memorable Moments',view:()=>crud(CR.moments)},
-  {id:'wins',n:'06',label:'Thành tích tập thể',view:()=>crud(CR.achievements)}];
-const tabBy=id=>TABS.find(t=>t.id===id);
+  {id:'wins',n:'06',label:'Thành tích tập thể',view:()=>crud(CR.achievements)},
+  {id:'gallery',n:'07',label:'Kho ảnh SK22/image/',view:vGallery}];
+const tabBy=id=>TABS.find(t=>t.id===id)||TABS[0];
 const CRKEY={quotes:'quotes',moments:'moments',wins:'achievements'};
 
 /* ---------- Render ---------- */
@@ -410,6 +603,11 @@ function renderPreview(){
     h=`<div class="pv hero">${s.imageUrl?`<img class="pvbg" src="${esc(s.imageUrl)}" alt="">`:'<div class="tableau"></div>'}<div class="veil"></div><div class="pvin"><p class="sub">${esc(s.subtitle)}</p><h3>${esc(s.name)}</h3><p>${esc(s.intro)}</p><h4>${esc(k.name)}</h4><p>${esc(k.message)}</p></div></div>`}
   else if(t==='teacher')h=prof(D.teacher);
   else if(t==='students')h=prof(D.students[UI.sel]);
+  else if(t==='gallery'){
+    const list=getAllGalleryImages().slice(0,3);
+    lab='Ảnh mới nhất trong /SK22/image/';
+    h=list.length?list.map(im=>`<div class="mc"><img src="${esc(im.url)}" alt=""><small class="mono">${esc(im.url.startsWith('data:')?'/SK22/image/'+im.filename:im.url)}</small></div>`).join(''):'<p class="empty">Chưa có ảnh trong /SK22/image/.</p>';
+  }
   else{const c=CR[CRKEY[t]],st=UI[c.key],live=c.fields.some(x=>st.form[x.k]);
     const items=live?[st.form]:D[c.key].filter(x=>st.filter==='all'||x.grade===st.filter).slice(0,3);
     lab=live?'Bản nháp đang soạn':'Xem trước trên index.html';
@@ -429,10 +627,11 @@ async function pullFromCloud(){
         try{localStorage.setItem(KEY,JSON.stringify(D))}catch{}
         cloudState='Đã đồng bộ Neon DB';
         if(ses){renderView(false);setSync()}
-        return;
+      } else {
+        cloudState='Neon DB sẵn sàng';
+        if(ses)setSync();
       }
-      cloudState='Neon DB sẵn sàng';
-      if(ses)setSync();
+      await fetchServerImageList();
       return;
     }
   }catch{}
@@ -443,7 +642,7 @@ async function pullFromCloud(){
 async function save(){
   syncMirror();
   D.updatedAt=new Date().toISOString();
-  try{localStorage.setItem(KEY,JSON.stringify(D))}catch{toast('Bộ nhớ trình duyệt đầy, đang đồng bộ trực tiếp lên Neon DB...','err')}
+  try{localStorage.setItem(KEY,JSON.stringify(D))}catch{}
   try{bc&&bc.postMessage({type:'update',at:D.updatedAt})}catch{}
 
   setSync('Đang lưu lên Neon DB...');
@@ -460,7 +659,7 @@ async function save(){
     if(res.ok){
       cloudState='Đã đồng bộ Neon DB';
       dirty(false);
-      toast('Đã lưu & đồng bộ lên Neon Database!');
+      toast('Đã lưu & cập nhật ngay lên index.html!');
       return true;
     } else if(res.status===401){
       toast('Mật khẩu SK22 Member không hợp lệ trên Server!','err');
@@ -469,11 +668,11 @@ async function save(){
   }catch{}
   cloudState='Đã lưu Local';
   dirty(false);
-  toast('Đã lưu vào trình duyệt (Local Sync)');
+  toast('Đã lưu & đồng bộ trực tiếp (Local Sync)');
   return true;
 }
 
-function external(){if(!ses)return;if(isDirty){toast('Dữ liệu vừa đổi ở tab khác. Lưu bây giờ sẽ ghi đè thay đổi đó.','err');return}D=loadLocal();renderView(false);setSync()}
+function external(){if(!ses)return;if(isDirty)return;D=loadLocal();renderView(false);setSync()}
 bc&&(bc.onmessage=external);
 addEventListener('storage',e=>{if(e.key===KEY)external()});
 addEventListener('beforeunload',e=>{if(isDirty){e.preventDefault();e.returnValue=''}});
@@ -482,9 +681,7 @@ addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()===
 /* ---------- Navigation helper ---------- */
 document.addEventListener('click',e=>{
   const homeBtn=e.target.closest('[data-go-home]');
-  if(homeBtn){
-    window.location.href='index.html';
-  }
+  if(homeBtn) window.location.href='index.html';
 });
 
 /* ---------- Delegated events on the workspace ---------- */
@@ -493,10 +690,31 @@ V.addEventListener('input',e=>{const t=e.target;
   if(t.dataset.path!==undefined){setp(t.dataset.path,t.value);touch(t.dataset.path)}
   else if(t.dataset.url!==undefined){setp(t.dataset.url,t.value.trim());paintThumbs();touch(t.dataset.url)}
   else if(t.dataset.search!==undefined){UI.q=t.value;$('#slist').innerHTML=studentItems()}});
-V.addEventListener('change',async e=>{const t=e.target;if(t.dataset.file===undefined)return;
-  const f=t.files[0],p=t.dataset.file;t.value='';if(!f)return;
-  try{setp(p,await compress(f,p.endsWith('avatar')?480:1280));const u=V.querySelector(`[data-url="${p}"]`);if(u)u.value='';paintThumbs();touch(p)}
-  catch{toast('Không đọc được ảnh này. Hãy thử file JPG hoặc PNG khác.','err')}});
+
+V.addEventListener('change',async e=>{
+  const t=e.target;
+  if(t.id==='multiUploadInput'){
+    const files=[...(t.files||[])];
+    t.value='';
+    if(!files.length)return;
+    for(const f of files){
+      try{await uploadToSK22ImageFolder(f, f.name.replace(/\.[^.]+$/,''), null)}
+      catch{toast('Không tải được file '+f.name,'err')}
+    }
+    renderView(false);
+    return;
+  }
+  if(t.dataset.file===undefined)return;
+  const f=t.files[0],p=t.dataset.file,pref=t.dataset.prefix||'sk22';
+  t.value='';
+  if(!f)return;
+  try{
+    await uploadToSK22ImageFolder(f, pref, p);
+  }catch{
+    toast('Không đọc được ảnh này. Hãy thử file JPG hoặc PNG khác.','err');
+  }
+});
+
 const move=(arr,i,d)=>{const j=i+d;if(j<0||j>=arr.length)return;[arr[i],arr[j]]=[arr[j],arr[i]]};
 const ACT={
   pick:d=>{UI.sel=+d.i;renderView()},
@@ -506,15 +724,47 @@ const ACT={
   edit:d=>{const c=CR[d.key],st=UI[d.key],it=D[d.key].find(x=>x.id===d.id);if(!it)return;
     st.edit=it.id;st.form=blank(c);c.fields.forEach(x=>st.form[x.k]=it[x.k]||'');if(c.grade)st.form.grade=it.grade;renderView(false);scrollTo({top:0,behavior:'smooth'})},
   del:async d=>{const it=D[d.key].find(x=>x.id===d.id);if(!it)return;
-    if(!await ask('Xóa mục này?','Mục sẽ bị xóa khỏi danh sách và đồng bộ lên hệ thống khi bạn bấm Lưu.','Xóa'))return;
-    D[d.key]=D[d.key].filter(x=>x.id!==d.id);syncMirror();if(UI[d.key].edit===d.id)ACT.cancel(d);dirty(true);renderView(false)},
-  up:d=>{move(D[d.key],D[d.key].findIndex(x=>x.id===d.id),-1);syncMirror();dirty(true);renderView(false)},
-  down:d=>{move(D[d.key],D[d.key].findIndex(x=>x.id===d.id),1);syncMirror();dirty(true);renderView(false)},
+    if(!await ask('Xóa mục này?','Mục sẽ bị xóa và cập nhật ngay lên index.html.','Xóa'))return;
+    D[d.key]=D[d.key].filter(x=>x.id!==d.id);syncMirror();if(UI[d.key].edit===d.id)ACT.cancel(d);dirty(true);renderView(false);await save()},
+  up:async d=>{move(D[d.key],D[d.key].findIndex(x=>x.id===d.id),-1);syncMirror();dirty(true);renderView(false);await save()},
+  down:async d=>{move(D[d.key],D[d.key].findIndex(x=>x.id===d.id),1);syncMirror();dirty(true);renderView(false);await save()},
+  saveNow:async()=>{await save()},
   saveNext:async()=>{if(await save()){UI.sel=Math.min(D.students.length-1,UI.sel+1);renderView();V.querySelector('textarea')?.focus()}}
 };
-V.addEventListener('click',e=>{const b=e.target.closest('[data-act],[data-clear]');if(!b||b.disabled)return;
-  if(b.dataset.clear){const p=b.dataset.clear;setp(p,'');const u=V.querySelector(`[data-url="${p}"]`);if(u)u.value='';paintThumbs();touch(p);return}
-  ACT[b.dataset.act]?.(b.dataset)});
+
+V.addEventListener('click',async e=>{
+  const pickGal=e.target.closest('[data-pick-gal]');
+  if(pickGal){openGalleryPicker(pickGal.dataset.pickGal);return}
+
+  const copyBtn=e.target.closest('[data-copy-url]');
+  if(copyBtn){
+    const u=copyBtn.dataset.copyUrl;
+    try{await navigator.clipboard.writeText(u)}catch{
+      const ta=document.createElement('textarea');ta.value=u;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+    }
+    toast('Đã sao chép đường dẫn ảnh!');
+    return;
+  }
+
+  const delImg=e.target.closest('[data-del-img]');
+  if(delImg){
+    const fn=delImg.dataset.delImg, url=delImg.dataset.delUrl;
+    if(!await ask('Xóa ảnh khỏi /SK22/image/?','Ảnh này sẽ bị xóa khỏi kho lưu trữ /SK22/image/.','Xóa ảnh'))return;
+    try{
+      if(fn) await fetch(API_IMAGE+'?file='+encodeURIComponent(fn),{method:'DELETE',headers:{'x-sk22-password':(ses&&ses.password)||DEFAULT_PASS}});
+    }catch{}
+    D.imageLibrary=(D.imageLibrary||[]).filter(x=>x.url!==url&&x.filename!==fn);
+    serverImages=serverImages.filter(x=>x.url!==url&&x.filename!==fn);
+    await save();
+    renderView(false);
+    return;
+  }
+
+  const b=e.target.closest('[data-act],[data-clear]');if(!b||b.disabled)return;
+  if(b.dataset.clear){const p=b.dataset.clear;setp(p,'');const u=V.querySelector(`[data-url="${p}"]`);if(u)u.value='';paintThumbs();touch(p);if(!p.startsWith('ui.'))await save();return}
+  ACT[b.dataset.act]?.(b.dataset);
+});
+
 V.addEventListener('submit',async e=>{e.preventDefault();const k=e.target.dataset.form;
   if(k==='student'){await save();if(UI.tab==='students')$('#slist').innerHTML=studentItems();return}
   const c=CR[k],st=UI[k],f=st.form;
