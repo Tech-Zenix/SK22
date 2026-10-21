@@ -6,14 +6,23 @@
       "maxDuration": 15
     }
   },
+  "rewrites": [
+    {
+      "source": "/SK22/image/:filename*",
+      "destination": "/api/image?file=:filename*"
+    }
+  ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/data",
       "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store, no-cache, must-revalidate, max-age=0"
-        }
+        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, max-age=0" }
+      ]
+    },
+    {
+      "source": "/SK22/image/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     }
   ]
