@@ -175,8 +175,8 @@ function render(){
  $('#tip').textContent='Đã cập nhật: '+countFilled()+' mục';
  $('#schoolNameH1').textContent=has(D.school.name)?D.school.name.toUpperCase():'TRƯỜNG THPT CHUYÊN HÀ TĨNH';
  $('#schoolSub').textContent=has(D.school.address)?D.school.address:'Chương 01 · Mở đầu';
- const bg=$('#bgimg'),rawBg=D.school.imageUrl||D.school.logo||'',u=(!rawBg||rawBg==='truong-chuyen-ha-tinh.jpg')?DEFAULT_BG:rawBg;
- if(bg.getAttribute('src')!==u)bg.src=u;
+ const bg=$('#bgimg');
+ if(bg.getAttribute('src')!==DEFAULT_BG)bg.src=DEFAULT_BG;
  const sChips=[];
  if(has(D.school.logo)||has(D.school.message)){
    sChips.push(`<div class="chip">${has(D.school.logo)?`<div class="logo"><img src="${esc(D.school.logo)}" alt="Logo"></div>`:''}<div><span class="mono">Giới thiệu trường</span><p style="font-size:12px">${esc(D.school.message||'Trường THPT Chuyên Hà Tĩnh')}</p></div></div>`);
