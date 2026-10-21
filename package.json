@@ -1,0 +1,10 @@
+{
+  "name": "chuyen-sinh-k22-hatinh",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website & Admin Studio Chuyên Sinh Khóa 22 - THPT Chuyên Hà Tĩnh (Vercel + Neon Postgres)",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}
